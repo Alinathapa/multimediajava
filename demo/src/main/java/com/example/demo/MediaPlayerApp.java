@@ -13,10 +13,8 @@ public class MediaPlayerApp extends Application {
         controller = new Controller(primaryStage);
         mediaManager = new MediaManager(primaryStage, controller);
 
-        // Initialize UI
         controller.initializeUI(mediaManager);
 
-        // Set the initial scene (file chooser)
         primaryStage.setScene(controller.getStartScene());
         primaryStage.setTitle("Media Player");
         primaryStage.show();
