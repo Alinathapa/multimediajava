@@ -20,22 +20,18 @@ public class MediaManager {
     }
 
     public void loadMedia(File file, Scene mediaScene, Slider seekBar, Slider volumeSlider) {
-        // Dispose of the previous media player if any
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.dispose();
         }
 
-        // Load new media
         Media media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         controller.getMediaView().setMediaPlayer(mediaPlayer);
 
-        // Update stage and title
         stage.setTitle("Now Playing: " + file.getName());
         stage.setScene(mediaScene);
 
-        // Bind media controls
         mediaPlayer.currentTimeProperty().addListener((obs, oldTime, newTime) -> {
             seekBar.setValue(newTime.toSeconds());
         });
@@ -50,7 +46,6 @@ public class MediaManager {
 
         volumeSlider.valueProperty().addListener((obs, oldVal, newVal) -> mediaPlayer.setVolume(newVal.doubleValue()));
 
-        // Stop playback when media ends
         mediaPlayer.setOnEndOfMedia(() -> mediaPlayer.stop());
     }
 
