@@ -24,13 +24,12 @@ public class Controller {
     }
 
     public void initializeUI(MediaManager mediaManager) {
-        // Create MediaView
+       
         mediaView = new MediaView();
         mediaView.fitWidthProperty().bind(Bindings.selectDouble(mediaView.sceneProperty(), "width"));
         mediaView.fitHeightProperty().bind(Bindings.selectDouble(mediaView.sceneProperty(), "height"));
         mediaView.setPreserveRatio(true);
 
-        // Create Controls
         Button playButton = new Button("Play");
         Button pauseButton = new Button("Pause");
         Button stopButton = new Button("Stop");
@@ -52,7 +51,6 @@ public class Controller {
 
         StackPane mediaPane = new StackPane(mediaView, mainControls);
 
-        // File chooser scene
         Button fileChooseBtn = new Button("Select a File");
         StackPane startPane = new StackPane(fileChooseBtn);
         startPane.setAlignment(Pos.CENTER);
@@ -60,7 +58,6 @@ public class Controller {
         startScene = new Scene(startPane, 650, 500);
         mediaScene = new Scene(mediaPane, 650, 500);
 
-        // Button Actions
         fileChooseBtn.setOnAction(event -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Select a Media File");
